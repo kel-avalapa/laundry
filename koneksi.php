@@ -2,7 +2,11 @@
 $host     = "localhost";
 $user     = "root";
 $password = ""; 
+<<<<<<< HEAD
 $database = "laundry"rr"";
+=======
+$database = 'laundry"rr"';
+>>>>>>> 2f76d0d11030b8521d35c61094235b3eb63a0244
 
 $koneksi = mysqli_connect($host, $user, $password, $database);
 
