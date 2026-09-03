@@ -1,6 +1,10 @@
 <?php
 $host     = "localhost";
 $user     = "root";
+<<<<<<< HEAD
+$password = "";
+$database = "laundry\"rr\"";
+=======
 $password = ""; 
 <<<<<<< HEAD
 $database = "laundry"rr"";
