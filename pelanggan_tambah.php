@@ -1,18 +1,15 @@
 <?php
 include 'koneksi.php';
 
-// Jika tombol simpan diklik
 if (isset($_POST['simpan'])) {
     $nama = $_POST['nama'];
     $no_hp = $_POST['no_hp'];
     $alamat = $_POST['alamat'];
 
-    // Query untuk menyimpan data ke tabel tb_pelanggan
     $query = "INSERT INTO tb_pelanggan (nama, no_hp, alamat) VALUES ('$nama', '$no_hp', '$alamat')";
     $insert = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
 
     if ($insert) {
-        // Jika berhasil, alihkan kembali ke halaman daftar pelanggan
         header("location:pelanggan.php");
         exit();
     }
