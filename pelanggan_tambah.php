@@ -1,17 +1,20 @@
 <?php
 include 'koneksi.php';
 
+// Jika tombol simpan diklik
 if (isset($_POST['simpan'])) {
-    $nama   = $_POST['nama'];
-    $hp     = $_POST['hp'];
+    $nama = $_POST['nama'];
+    $no_hp = $_POST['no_hp'];
     $alamat = $_POST['alamat'];
 
-    $query = mysqli_query($koneksi, "INSERT INTO pelanggan (nama, hp, alamat) VALUES ('$nama', '$hp', '$alamat')");
-    
-    if ($query) {
-        echo "<script>alert('Data Pelanggan Berhasil Disimpan!'); window.location='pelanggan.php';</script>";
-    } else {
-        echo "Gagal menyimpan data: " . mysqli_error($koneksi);
+    // Query untuk menyimpan data ke tabel tb_pelanggan
+    $query = "INSERT INTO tb_pelanggan (nama, no_hp, alamat) VALUES ('$nama', '$no_hp', '$alamat')";
+    $insert = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+
+    if ($insert) {
+        // Jika berhasil, alihkan kembali ke halaman daftar pelanggan
+        header("location:pelanggan.php");
+        exit();
     }
 }
 ?>
@@ -19,21 +22,35 @@ if (isset($_POST['simpan'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tambah Pelanggan - Laundry "RR"</title>
+    <title>Tambah Pelanggan Laundry "RR"</title>
 </head>
 <body>
-    <h2>Tambah Data Pelanggan Baru</h2>
-    <form method="POST">
-        <label>Nama Pelanggan:</label><br>
-        <input type="text" name="nama" required><br><br>
-        
-        <label>No. HP/WA:</label><br>
-        <input type="text" name="hp" required><br><br>
-        
-        <label>Alamat:</label><br>
-        <textarea name="alamat" required></textarea><br><br>
-        
-        <button type="submit" name="simpan">Simpan Pelanggan</button>
+    <h2>Tambah Pelanggan Baru</h2>
+    <a href="pelanggan.php">&laquo; Kembali ke Daftar Pelanggan</a><br><br>
+
+    <form method="POST" action="">
+        <table>
+            <tr>
+                <td>Nama Pelanggan</td>
+                <td>:</td>
+                <td><input type="text" name="nama" required></td>
+            </tr>
+            <tr>
+                <td>No. HP</td>
+                <td>:</td>
+                <td><input type="text" name="no_hp" required></td>
+            </tr>
+            <tr>
+                <td>Alamat</td>
+                <td>:</td>
+                <td><textarea name="alamat" required></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><button type="submit" name="simpan">Simpan</button></td>
+            </tr>
+        </table>
     </form>
 </body>
 </html>
