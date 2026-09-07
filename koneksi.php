@@ -1,12 +1,12 @@
 <?php
-$host = "localhost";
-$user = "root";
+$host     = "localhost";
+$user     = "root";
 $password = "";
-$database = "laundry";
+$database = "laundryrr"; // <-- Sesuaikan jadi laundryrr
 
 $koneksi = mysqli_connect($host, $user, $password, $database);
 
-if (!$koneksi) {
-    die("Koneksi database gagal: " . mysqli_connect_error());
+if (mysqli_connect_errno()){
+    echo "Koneksi database gagal: " . mysqli_connect_error();
 }
 ?>
