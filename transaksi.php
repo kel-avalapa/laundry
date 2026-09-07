@@ -24,13 +24,13 @@ include 'koneksi.php';
         </tr>
         <?php
         $no = 1;
-        $no = 1;
-$query = "SELECT tb_transaksi.*, tb_pelanggan.nama, tb_paket.nama_paket 
-          FROM tb_transaksi 
-          JOIN tb_pelanggan ON tb_transaksi.id_pelanggan = tb_pelanggan.id_pelanggan 
-          JOIN tb_paket ON tb_transaksi.id_paket = tb_paket.id_paket 
-          ORDER BY id_transaksi DESC";
-$data = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+        $query = "SELECT tb_transaksi.*, tb_pelanggan.nama, tb_paket.nama_paket 
+                  FROM tb_transaksi 
+                  JOIN tb_pelanggan ON tb_transaksi.id_pelanggan = tb_pelanggan.id_pelanggan 
+                  JOIN tb_paket ON tb_transaksi.id_paket = tb_paket.id_paket 
+                  ORDER BY id_transaksi DESC";
+        $data = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+        
         while ($d = mysqli_fetch_array($data)) {
         ?>
         <tr>
@@ -38,7 +38,7 @@ $data = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
             <td><?= $d['tgl_transaksi']; ?></td>
             <td><?= $d['nama']; ?></td>
             <td><?= $d['nama_paket']; ?></td>
-            <td><?= $dgit['berat']; ?> kg</td>
+            <td><?= $d['berat']; ?> kg</td>
             <td>Rp <?= number_format($d['total_harga']); ?></td>
             <td><b><?= $d['status_bayar']; ?></b></td>
             <td><?= $d['status_cuci']; ?></td>
