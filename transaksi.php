@@ -24,12 +24,13 @@ include 'koneksi.php';
         </tr>
         <?php
         $no = 1;
-        $query = "SELECT transaksi.*, pelanggan.nama, paket.nama_paket 
-                  FROM transaksi 
-                  JOIN pelanggan ON transaksi.id_pelanggan = pelanggan.id_pelanggan 
-                  JOIN paket ON transaksi.id_paket = paket.id_paket 
-                  ORDER BY id_transaksi DESC";
-        $data = mysqli_query($koneksi, $query);
+        $no = 1;
+$query = "SELECT tb_transaksi.*, tb_pelanggan.nama, tb_paket.nama_paket 
+          FROM tb_transaksi 
+          JOIN tb_pelanggan ON tb_transaksi.id_pelanggan = tb_pelanggan.id_pelanggan 
+          JOIN tb_paket ON tb_transaksi.id_paket = tb_paket.id_paket 
+          ORDER BY id_transaksi DESC";
+$data = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
         while ($d = mysqli_fetch_array($data)) {
         ?>
         <tr>
