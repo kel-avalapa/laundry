@@ -17,10 +17,11 @@ include 'koneksi.php';
             <th>Nama</th>
             <th>No. HP</th>
             <th>Alamat</th>
+            <th>Aksi</th>
         </tr>
         <?php
         $no = 1;
-        // Pastikan nama tabel (tb_pelanggan) dan kolom (id_pelanggan) sesuai dengan phpMyAdmin
+        // Mengambil data dari tabel tb_pelanggan
         $query = "SELECT * FROM tb_pelanggan ORDER BY id_pelanggan DESC";
         $data = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
         
@@ -31,6 +32,11 @@ include 'koneksi.php';
             <td><?= $d['nama']; ?></td>
             <td><?= $d['no_hp']; ?></td>
             <td><?= $d['alamat']; ?></td>
+            <td>
+                <!-- Tombol Edit dan Hapus yang membawa ID pelanggan -->
+                <a href="pelanggan_edit.php?id=<?= $d['id_pelanggan']; ?>">Edit</a> | 
+                <a href="pelanggan_hapus.php?id=<?= $d['id_pelanggan']; ?>" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+            </td>
         </tr>
         <?php } ?>
     </table>
