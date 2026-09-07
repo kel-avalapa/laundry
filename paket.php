@@ -24,11 +24,15 @@ include 'koneksi.php';
         while($d = mysqli_fetch_array($query)){
         ?>
         <tr>
-            <td><?= $no++; ?></td>
-            <td><?= $d['nama_paket']; ?></td>
-            <td><?= $d['jenis']; ?></td>
-            <td>Rp <?= number_format($d['harga']); ?></td>
-        </tr>
+    <td><?= $no++; ?></td>
+    <td><?= $d['nama_paket']; ?></td>
+    <td><?= $d['jenis_paket']; ?></td>
+    <td>Rp <?= number_format($d['harga_paket']); ?></td>
+    <td>
+        <a href="paket_edit.php?id_paket=<?= $d['id_paket']; ?>">Edit</a> | 
+        <a href="paket_hapus.php?id_paket=<?= $d['id_paket']; ?>">Hapus</a>
+    </td>
+</tr>
         <?php } ?>
     </table>
 </body>
