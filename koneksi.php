@@ -2,7 +2,7 @@
 $host     = "localhost";
 $user     = "root";
 $password = "";
-$database = "laundry\"rr\""; // Menggunakan \ di depan tanda petik ganda
+$database = "laundry\"rr\""; // Tanda \ wajib ada sebelum petik ganda
 
 $koneksi = mysqli_connect($host, $user, $password, $database);
 
