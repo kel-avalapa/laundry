@@ -5,12 +5,12 @@ include 'koneksi.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Data Pelanggan</title>
+    <title>Daftar Pelanggan Laundry "RR"</title>
 </head>
 <body>
     <h2>Daftar Pelanggan Laundry "RR"</h2>
     <a href="pelanggan_tambah.php">+ Tambah Pelanggan Baru</a><br><br>
-    
+
     <table border="1" cellpadding="8" cellspacing="0">
         <tr>
             <th>No</th>
@@ -20,13 +20,16 @@ include 'koneksi.php';
         </tr>
         <?php
         $no = 1;
-        $data = mysqli_query($koneksi, "SELECT * FROM pelanggan ORDER BY id_pelanggan DESC");
+        // Pastikan nama tabel (tb_pelanggan) dan kolom (id_pelanggan) sesuai dengan phpMyAdmin
+        $query = "SELECT * FROM tb_pelanggan ORDER BY id_pelanggan DESC";
+        $data = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
+        
         while ($d = mysqli_fetch_array($data)) {
         ?>
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $d['nama']; ?></td>
-            <td><?= $d['hp']; ?></td>
+            <td><?= $d['no_hp']; ?></td>
             <td><?= $d['alamat']; ?></td>
         </tr>
         <?php } ?>
