@@ -1,14 +1,11 @@
 <?php
 include 'koneksi.php';
 
-// Pastikan tombol atau proses berjalan
-if (isset($_POST['jenis_paket']) || isset($_POST['nama_paket'])) {
-    $jenis_paket = $_POST['jenis_paket'];
-    $nama_paket  = $_POST['nama_paket'];
-    $harga       = $_POST['harga'];
+if (isset($_POST['simpan'])) {
+    $nama_paket   = $_POST['nama_paket'];
+    $harga_per_kg = $_POST['harga_per_kg'];
 
-    // Masukkan ke database (sesuaikan nama kolom tabel tb_paket)
-    $query = "INSERT INTO tb_paket (jenis_paket, nama_paket, harga) VALUES ('$jenis_paket', '$nama_paket', '$harga')";
+    $query = "INSERT INTO tb_paket (nama_paket, harga_per_kg) VALUES ('$nama_paket', '$harga_per_kg')";
     $insert = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
 
     if ($insert) {
