@@ -1,17 +1,23 @@
 <?php
 include 'koneksi.php';
 
-$id_pelanggan   = $_POSTST['id_pelanggan'];
-$id_paket       = $_POSTST['id_paket'];
-$id_user        = $_POSTST['id_user'];
-$qty            = $_POSTST['qty'];
-$status         = $_POSTST['status'];
-$tgl            = date('Y-m-d');
+if (isset($_POST['simpan'])) {
+    $id_pelanggan = $_POST['id_pelanggan'];
+    $tgl = $_POST['tgl'];
+    $batas_waktu = $_POST['batas_waktu'];
+    $tgl_bayar = $_POST['tgl_bayar'];
+    $status = $_POST['status'];
+    $dibayar = $_POST['dibayar'];
+    $id_user = $_POST['id_user']; // Sesuaikan dengan session login jika ada
 
-$query_paket = mysqli_query($koneksi,"SELECT harga FROM tb_paket WHERE id_paket = '$id_paket'");
-$p = mysqli_fetch_array($query_paket);
-$total_harga = $p['harga'] * $qty;
+    $query = "INSERT INTO tb_transaksi (id_pelanggan, tgl, batas_waktu, tgl_bayar, status, dibayar, id_user) 
+              VALUES ('$id_pelanggan', '$tgl', '$batas_waktu', '$tgl_bayar', '$status', '$dibayar', '$id_user')";
+              
+    $insert = mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));
 
-mysqli_query($koneksi, "INSERT INTO tb_transaksi VALUES('', '$id_pelangggan', '$id_pelanggan', '$id_user', '$id_paket', '$tgl', '$qty', '$total_harga', '$status')");
-header("location:transaksi.php");
+    if ($insert) {
+        header("location:transaksi.php");
+        exit();
+    }
+}
 ?>
