@@ -2,7 +2,7 @@
 $host     = "localhost";
 $user     = "root";
 $password = "";
-$database = 'laundry_rr';
+$database = "laundry_rr";
 
 $koneksi  = mysqli_connect($host, $user, $password, $database);
 
